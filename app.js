@@ -6,7 +6,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-// var weibo = require('./routes/weibo');
+var home = require('./src/routes/home');
 
 const app = express();
 
@@ -14,10 +14,8 @@ const app = express();
 app.set('views',  __dirname + "/view");
 app.set( 'view engine', 'ejs' );
 app.engine( '.html', ejs.__express );
-// app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'view', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -29,7 +27,7 @@ app.get('/', function(req, res) {
 });
 
 
-// app.use('/weibo', weibo);
+app.use('/home', home);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
